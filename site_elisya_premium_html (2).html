@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elisya | Vinhos e Espumantes</title>
+  <meta name="description" content="Elisya Vinhos e Espumantes: uma experiência premium inspirada nos Campos Elísios. Nem tudo é para todos." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black: #070707;
+      --deep: #16120c;
+      --brown: #2f2818;
+      --gold: #d5b557;
+      --gold-soft: #efd887;
+      --ivory: #f5efe3;
+      --muted: #c9bea7;
+      --wine: #4d0f1e;
+      --green: #26351f;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--ivory);
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      padding: 22px 0;
+      background: rgba(7, 7, 7, 0.72);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(213, 181, 87, 0.16);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      letter-spacing: 0.32em;
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+
+    .menu {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+
+    .menu a:hover {
+      color: var(--gold-soft);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 26px;
+      border: 1px solid var(--gold);
+      color: var(--gold-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.75rem;
+      transition: 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(0,0,0,.56), rgba(0,0,0,.72)),
+        url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1800&q=85') center/cover;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(213,181,87,.12), transparent 42%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      width: min(900px, 92%);
+      padding-top: 80px;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.35em;
+      font-size: 0.75rem;
+      margin-bottom: 20px;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cinzel', serif;
+      font-weight: 500;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.2rem, 9vw, 8.6rem);
+      letter-spacing: 0.22em;
+      color: var(--gold-soft);
+      line-height: 1;
+      margin-bottom: 28px;
+    }
+
+    .hero .tagline {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.25rem, 2vw, 2rem);
+      letter-spacing: 0.12em;
+      margin-bottom: 22px;
+      color: var(--ivory);
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 680px;
+      margin: 0 auto 34px;
+      font-size: 1rem;
+    }
+
+    section {
+      padding: 110px 0;
+      position: relative;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 58px;
+    }
+
+    .section-title span {
+      display: block;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      font-size: 0.72rem;
+      margin-bottom: 14px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 4vw, 4rem);
+      color: var(--ivory);
+      line-height: 1.1;
+    }
+
+    .about {
+      background: linear-gradient(180deg, var(--black), var(--deep));
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .about-card {
+      border: 1px solid rgba(213, 181, 87, 0.22);
+      padding: 48px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .about-card h2 {
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      color: var(--gold-soft);
+      margin-bottom: 24px;
+    }
+
+    .about-card p,
+    .text-block p {
+      color: var(--muted);
+      margin-bottom: 18px;
+      font-size: 0.98rem;
+    }
+
+    .quote {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      font-size: clamp(1.4rem, 3vw, 2.3rem);
+      line-height: 1.35;
+    }
+
+    .collection {
+      background: var(--deep);
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+
+    .tab {
+      padding: 11px 18px;
+      border: 1px solid rgba(213,181,87,.28);
+      color: var(--muted);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .product {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(213,181,87,.16);
+      padding: 32px;
+      min-height: 390px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: .35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0;
+      transition: .35s ease;
+    }
+
+    .product:hover {
+      transform: translateY(-8px);
+      border-color: rgba(213,181,87,.45);
+      background: rgba(255,255,255,.045);
+    }
+
+    .product:hover::before {
+      opacity: 1;
+    }
+
+    .product .category {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.68rem;
+      margin-bottom: 18px;
+    }
+
+    .product h3 {
+      font-size: 1.55rem;
+      color: var(--ivory);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .product p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 14px;
+    }
+
+    .detail {
+      color: var(--gold-soft) !important;
+      font-size: 0.82rem !important;
+    }
+
+    .product-link {
+      margin-top: 24px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.72rem;
+    }
+
+    .experience {
+      background:
+        linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,.84)),
+        url('https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=1800&q=85') center/cover fixed;
+      text-align: center;
+    }
+
+    .experience h2 {
+      font-size: clamp(2.2rem, 5vw, 5rem);
+      color: var(--gold-soft);
+      margin-bottom: 28px;
+    }
+
+    .experience p {
+      max-width: 760px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .difference {
+      background: linear-gradient(180deg, var(--deep), var(--black));
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      border: 1px solid rgba(213,181,87,.18);
+      padding: 30px 24px;
+      text-align: center;
+      background: rgba(255,255,255,.025);
+    }
+
+    .feature h3 {
+      color: var(--gold-soft);
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .cta {
+      background: var(--black);
+      text-align: center;
+      border-top: 1px solid rgba(213,181,87,.16);
+    }
+
+    .cta h2 {
+      color: var(--gold-soft);
+      font-size: clamp(2.2rem, 5vw, 4.8rem);
+      margin-bottom: 20px;
+    }
+
+    .cta p {
+      color: var(--muted);
+      margin-bottom: 34px;
+    }
+
+    footer {
+      padding: 46px 0;
+      border-top: 1px solid rgba(213,181,87,.16);
+      background: #050505;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    footer .footer-brand {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      letter-spacing: .28em;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 920px) {
+      .menu {
+        display: none;
+      }
+
+      .about-grid,
+      .products-grid,
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 82px 0;
+      }
+
+      .about-card {
+        padding: 34px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#home" class="brand">ELISYA</a>
+      <nav class="menu">
+        <a href="#marca">A Marca</a>
+        <a href="#colecao">Coleção</a>
+        <a href="#experiencia">Experiência</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="eyebrow">Vinhos e Espumantes</div>
+        <h1>ELISYA</h1>
+        <div class="tagline">Nem tudo é para todos.</div>
+        <p>Uma marca criada para quem reconhece o valor do instante, da escolha e da experiência.</p>
+        <a href="#colecao" class="btn">Explorar Coleção</a>
+      </div>
+    </section>
+
+    <section class="about" id="marca">
+      <div class="container about-grid">
+        <div class="about-card">
+          <div class="eyebrow">Origem</div>
+          <h2>Inspirada no que permanece.</h2>
+          <p>Desde a antiguidade, falava-se dos Campos Elísios — um lugar destinado aos escolhidos, onde o tempo perde a pressa e o prazer se torna absoluto.</p>
+          <p>Dessa essência nasce Elisya: uma celebração do instante, da escolha e de quem reconhece o verdadeiro valor do que vive.</p>
+        </div>
+        <div class="text-block">
+          <p class="quote">O vinho não é apenas uma bebida. É presença. É memória. É escolha.</p>
+          <p>A Elisya reúne vinhos jovens, espumantes elegantes e tintos com maturação cuidadosamente conduzida, sempre com foco em equilíbrio, identidade e sofisticação.</p>
+          <p>A proposta é simples, mas rara: transformar cada rótulo em uma experiência que começa antes do primeiro gole.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="collection" id="colecao">
+      <div class="container">
+        <div class="section-title">
+          <span>Coleção</span>
+          <h2>Rótulos Elisya</h2>
+        </div>
+
+        <div class="tabs">
+          <span class="tab">Tintos</span>
+          <span class="tab">Rosé</span>
+          <span class="tab">Brancos</span>
+          <span class="tab">Espumantes</span>
+        </div>
+
+        <div class="products-grid">
+          <article class="product">
+            <div>
+              <div class="category">Vinho Tinto Jovem</div>
+              <h3>Cabernet Sauvignon</h3>
+              <p class="detail">Jovem, sem passagem por madeira.</p>
+              <p>Um vinho versátil, equilibrado e de fácil apreciação. Apresenta perfil agradável, boa estrutura e harmonia em boca.</p>
+              <p>Ideal para diferentes ocasiões e para quem busca um tinto seco acessível, elegante e seguro.</p>
+            </div>
+            <a href="#contato" class="product-link">Ver detalhes</a>
+          </article>
+
+          <article class="product">
+            <div>
+              <div class="category">Vinho Tinto Jovem</div>
+              <h3>Merlot</h3>
+              <p class="detail">Jovem, sem passagem por madeira.</p>
+              <p>Um vinho macio e envolvente, com intensidade aromática, notas de frutas vermelhas e especiarias.</p>
+              <p>Entrega taninos suaves, bom volume em boca e final equilibrado.</p>
+            </div>
+            <a href="#contato" class="product-link">Ver detalhes</a>
+          </article>
+
+          <article class="product">
+            <div>
+              <div class="category">Vinho Tinto</div>
+              <h3>Cabernet Franc</h3>
+              <p class="detail">Safra 2022. 4 meses em barricas de carvalho francês e americano.</p>
+              <p>Apresenta aromas de frutas vermelhas como framboesa e cereja, combinados a notas sutis de especiarias e madeira.</p>
+              <p>Em boca, revela equilíbrio entre frescor e estrutura, taninos macios e final persistente.</p>
+            </div>
+            <a href="#contato" class="product-link">Ver detalhes</a>
+          </article>
+
+          <article class="product">
+            <div>
+              <div class="category">Vinho Tinto</div>
+              <h3>Carménère</h3>
+              <p class="detail">Safra 2022. 4 meses em barricas de carvalho francês e americano.</p>
+              <p>Traz aromas de frutas negras e especiarias, evoluindo para nuances de chocolate e café.</p>
+              <p>Em boca, apresenta taninos macios, acidez equilibrada e final suave e envolvente.</p>
+            </div>
+            <a href="#contato" class="product-link">Ver detalhes</a>
+          </article>
+
+          <article class="product">
+            <div>
+              <div class="category">Vinho Tinto</div>
+              <h3>Malbec Mendoza</h3>
+              <p class="detail">Safra 2022. 4 meses em carvalho.</p>
+              <p>Um vinho jovem, vibrante e cheio de frescor. Apresenta notas de frutas negras como amora e ameixa, com leve toque de madeira.</p>
+              <p>Em boca, mostra equilíbrio, vivacidade e final harmonioso.</p>
+            </div>
+            <a href="#contato" class="product-link">Ver detalhes</a>
+          </article>
+
+          <article class="product">
+            <div>
+              <div class="category">Blend Especial</div>
+              <h3>Trio de Tintas</h3>
+              <p class="detail">Safra 2023. 50% Tannat, 25% Marselan e 25% Merlot. 6 meses em carvalho francês.</p>
+              <p>Um vinho estruturado, complexo e envolvente, elaborado a partir de um trio de uvas tintas selecionadas.</p>
+              <p>Entrega profundidade, equilíbrio e caráter marcante.</p>
+            </div>
+            <a href="#contato" class="product-link">Ver detalhes</a>
+          </article>
+
+          <article class="product">
+            <div>
+              <div class="category">Vinho Tinto Suave</div>
+              <h3>Demi-Sec</h3>
+              <p>Um vinho suave, equilibrado e acessível, elaborado com uvas selecionadas e rígido controle de qualidade.</p>
+              <p>Apresenta leve dulçor, boa harmonia e estrutura fácil de apreciar.</p>
+            </div>
+            <a href="#contato" class="product-link">Ver detalhes</a>
+          </article>
+
+          <article class="product">
+            <div>
+              <div class="category">Vinho Rosé</div>
+              <h3>Rosé Cabernet Sauvignon / Merlot</h3>
+              <p class="detail">Blend: 40% Cabernet Sauvignon e 60% Merlot.</p>
+              <p>Leve, fresco e elegante. Apresenta coloração rosada clara, perfil refrescante e excelente drinkabilidade.</p>
+              <p>Ideal para momentos leves e descontraídos.</p>
+            </div>
+            <a href="#contato" class="product-link">Ver detalhes</a>
+          </article>
+
+          <article class="product">
+            <div>
+              <div class="category">Vinho Branco</div>
+              <h3>Chardonnay</h3>
+              <p class="detail">Jovem, fresco e aromático.</p>
+              <p>Apresenta tonalidade amarelo-palha, aroma marcante e refrescante, com notas de maçã verde, abacaxi, pera e toque de baunilha.</p>
+              <p>Equilibrado, elegante e agradável.</p>
+            </div>
+            <a href="#contato" class="product-link">Ver detalhes</a>
+          </article>
+
+          <article class="product">
+            <div>
+              <div class="category">Vinho Branco</div>
+              <h3>Lorena</h3>
+              <p class="detail">Uva híbrida brasileira: Malvasia Bianca e Seyval.</p>
+              <p>Um branco leve, frutado e moderno, com aromas agradáveis e excelente frescor.</p>
+              <p>Ideal para quem busca uma experiência jovem, versátil e fácil de apreciar.</p>
+            </div>
+            <a href="#contato" class="product-link">Ver detalhes</a>
+          </article>
+
+          <article class="product">
+            <div>
+              <div class="category">Espumante</div>
+              <h3>Brut Rosé Método Tradicional</h3>
+              <p class="detail">Segunda fermentação na garrafa. Mínimo de 12 meses em contato com as borras.</p>
+              <p>Apresenta perlage fina, coloração rosada de boa intensidade, aromas de torrefação e leve frutado.</p>
+              <p>Persistente, complexo e autêntico.</p>
+            </div>
+            <a href="#contato" class="product-link">Ver detalhes</a>
+          </article>
+
+          <article class="product">
+            <div>
+              <div class="category">Espumante</div>
+              <h3>Brut Chardonnay / Pinot Noir</h3>
+              <p>Elaborado com técnicas modernas de produção e atenção ao cultivo dos varietais.</p>
+              <p>Um espumante equilibrado, elegante e versátil, com perfil refinado e agradável.</p>
+            </div>
+            <a href="#contato" class="product-link">Ver detalhes</a>
+          </article>
+
+          <article class="product">
+            <div>
+              <div class="category">Espumante Sem Álcool</div>
+              <h3>Moscato Zero Álcool</h3>
+              <p>Apresenta aromas característicos da uva Moscato, com lembranças de abacaxi maduro e pêssego.</p>
+              <p>Leve, suave e refrescante, com equilíbrio entre dulçor e acidez.</p>
+            </div>
+            <a href="#contato" class="product-link">Ver detalhes</a>
+          </article>
+
+          <article class="product">
+            <div>
+              <div class="category">Espumante</div>
+              <h3>Moscatel Asti</h3>
+              <p>Elaborado com uvas moscatel pelo método Asti, entrega sensações únicas e excelente frescor.</p>
+              <p>Levemente adocicado, aromático e ideal para acompanhar momentos especiais.</p>
+            </div>
+            <a href="#contato" class="product-link">Ver detalhes</a>
+          </article>
+
+          <article class="product">
+            <div>
+              <div class="category">Espumante</div>
+              <h3>Brut Blanc de Blancs</h3>
+              <p>Resultado de uma cuidadosa seleção de uvas brancas premium cultivadas na Serra Gaúcha.</p>
+              <p>Combinação equilibrada e precisa, com complexidade harmoniosa e perfil sofisticado.</p>
+            </div>
+            <a href="#contato" class="product-link">Ver detalhes</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="experience" id="experiencia">
+      <div class="container">
+        <div class="eyebrow">Experiência Elisya</div>
+        <h2>Escolher bem muda tudo.</h2>
+        <p>Elisya não é sobre excesso. É sobre presença, intenção e bom gosto. Cada rótulo foi pensado para transformar ocasiões em experiências que permanecem.</p>
+      </div>
+    </section>
+
+    <section class="difference">
+      <div class="container">
+        <div class="section-title">
+          <span>Diferencial</span>
+          <h2>Uma marca feita para percepção.</h2>
+        </div>
+        <div class="features">
+          <div class="feature">
+            <h3>Seleção</h3>
+            <p>Rótulos pensados para momentos distintos, com identidade clara e experiência sensorial.</p>
+          </div>
+          <div class="feature">
+            <h3>Elegância</h3>
+            <p>Comunicação visual premium, minimalista e construída para valorizar cada detalhe.</p>
+          </div>
+          <div class="feature">
+            <h3>Equilíbrio</h3>
+            <p>Vinhos jovens, tintos com madeira e espumantes que unem frescor, estrutura e sofisticação.</p>
+          </div>
+          <div class="feature">
+            <h3>Experiência</h3>
+            <p>Mais do que produto: um convite a viver o momento certo com a escolha certa.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contato">
+      <div class="container">
+        <div class="eyebrow">Descubra Elisya</div>
+        <h2>A experiência começa aqui.</h2>
+        <p>Escolha o que poucos escolhem. Conheça a coleção e encontre o rótulo ideal para o seu momento.</p>
+        <a class="btn" href="https://wa.me/5500000000000" target="_blank" rel="noopener">Falar no WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">ELISYA</div>
+    <p>Vinhos e Espumantes · Nem tudo é para todos.</p>
+  </footer>
+</body>
+</html>
